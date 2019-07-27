@@ -55,6 +55,56 @@ void printMatrix(int** matrix)
 	}
 }
 
+void printMainDiag(int diag_num, int** matrix)
+{
+	int i, j;
+	if(diag_num < ROW) {
+		i = ROW - diag_num - 1;
+		j = 0;
+		while(i < ROW) {
+			printf("%d ", matrix[i][j]);
+			i++;
+			j++;
+		}
+	}
+	else {
+		diag_num -= ROW;
+		i = 0;
+		j = diag_num+1;
+		while(j < COL) {
+			printf("%d ", matrix[i][j]);
+			i++;
+			j++;
+		}
+	}
+	printf("\n");
+}
+
+void printSideDiag(int diag_num, int** matrix)
+{
+	int i, j;
+	if(diag_num < ROW) {
+		i = diag_num;
+		j = 0;
+		while(i >= 0) {
+			printf("%d ", matrix[i][j]);
+			i--;
+			j++;
+		}
+	}
+	else {
+		diag_num -= ROW;
+		i = ROW-1;
+		j = diag_num+1;
+		while(j < COL) {
+			printf("%d ", matrix[i][j]);
+			i--;
+			j++;
+		}
+	}
+	printf("\n");
+}
+
 void checkHorizontal(int** matrix)
 {
 	int count = 0;
