@@ -76,6 +76,27 @@ void checkHorizontal(int** matrix)
 	}
 }
 
+void checkVertical(int** matrix)
+{
+	int count;
+	for(int i = 0; i < ROW; i++) {
+		for(int j = 0; j < COL; j++) {
+			if(matrix[j][i]) {
+				count = 1;
+			}
+			else {
+				count = 0;
+				break;
+			}
+		}
+		
+		if(count) {
+			printCol(i, matrix);
+		}
+		count = 0;
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	if(argc > 1) {
@@ -89,6 +110,13 @@ int main(int argc, char* argv[])
 		
 		printf("Horizontal filled lines:\n");
 		checkHorizontal(data);
+		
+		printf("\n");
+		
+		printf("Vertical filled lines:\n");
+		checkVertical(data);
+		
+		printf("\n");
 		fclose(csv_file);
 	}
 	else {
