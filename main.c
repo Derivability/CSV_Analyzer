@@ -147,6 +147,88 @@ void checkVertical(int** matrix)
 	}
 }
 
+void checkSideDiag(int** matrix)
+{
+	int i, j, count;
+	for(int k = 0; k < ROW; k++) {
+		i = k;
+		j = 0;
+		while(i >= 0) {
+			if(matrix[i][j]) {
+				count = 1;
+			}
+			else {
+				count = 0;
+				break;
+			}
+			i--;
+			j++;
+		}
+		if(count) {
+			printSideDiag(k, matrix);
+		}
+	}
+	for(int k = 1; k < COL; k++) {
+		i = ROW-1;
+		j = k;
+		while(j < COL) {
+			if(matrix[i][j]) {
+				count = 1;
+			}
+			else {
+				count = 0;
+				break;
+			}
+			i--;
+			j++;
+		}
+		if(count) {
+			printSideDiag(k+ROW-1, matrix);
+		}
+	}
+}
+
+void checkMainDiag(int** matrix)
+{
+	int i, j, count;
+	for(int k = 0; k < ROW; k++) {
+		i = ROW-1-k;
+		j = 0;
+		while(i < ROW) {
+			if(matrix[i][j]) {
+				count = 1;
+			}
+			else {
+				count = 0;
+				break;
+			}
+			i++;
+			j++;
+		}
+		if(count) {
+			printMainDiag(k, matrix);
+		}
+	}
+	for(int k = 1; k < COL; k++) {
+		i = 0;
+		j = k;
+		while(j < COL) {
+			if(matrix[i][j]) {
+				count = 1;
+			}
+			else {
+				count = 0;
+				break;
+			}
+			i++;
+			j++;
+		}
+		if(count) {
+			printMainDiag(k+COL-1, matrix);
+		}
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	if(argc > 1) {
@@ -167,6 +249,15 @@ int main(int argc, char* argv[])
 		checkVertical(data);
 		
 		printf("\n");
+		
+		printf("Main diagonal filled lines:\n");
+		checkMainDiag(data);
+		
+		printf("\n");
+		
+		printf("Side diagonal filled lines:\n");
+		checkSideDiag(data);
+		
 		fclose(csv_file);
 	}
 	else {
